@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced String Quartet Separation Using Positional Cues (Supplement Material & Demo)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        figcaption {
+            text-align: center;
+        }
+        .style1 audio {
+            width: 20vw;
+            min-width: 100px;
+            max-width: 250px;
+        }
+
+        .style1 img {
+            width: 100%;
+            min-width: 300px;
+            max-width: 800px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .style1 td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .style1 .container {
+            overflow-x: auto;
+        }
+
+        .style1 .vertdivider {
+            border-right: 2px solid;
+        }
+
+        .style1 table {
+            max-width: 80%;
+        }
+
+        .style1 h1 {
+            font-size: 35px;
+        }
+
+        .style1 h2 {
+            font-size: 25px;
+            font-weight: normal;
+        }
+
+        .style1 p {
+            font-size: 16px;
+        }
+
+        .style1 hr {
+            text-align: center;
+            width: 80%;
+            margin: 30px;
+        }
+
+        .style1 hr.solid {
+            border-top: 2px solid #bbb;
+        }
+
+        .style2 .container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .style2 .image {
+            flex: 0 0 60%;
+            padding-right: 20px;
+        }
+
+        .style2 .audio {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* 使音频控件占满高度 */
+            height: 100%; /* 高度设置为100% */
+        }
+
+        .style2 img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .style2 .audio-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .style2 .audio-item label {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .style2 audio {
+            margin-bottom: 10px;
+        }
+
+        /* 定义style3类的样式 */
+        .style3 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: 20px; /* 举例：给这个div一个底部外边距 */
+            /* 你可以添加更多的样式属性 */
+        }
+        
+        /* 图片容器样式 */
+        .image {
+            flex-basis: 45%; /* 每个图片容器的基础宽度，使其一行两个 */
+            padding: 10px;
+            box-sizing: border-box; /* 包括padding在内的宽度计算 */
+        }
+        
+        /* 图片样式 */
+        .image img {
+            width: 100%;
+            height: auto;
+            cursor: pointer; /* 鼠标悬停时显示指针 */
+        }
+
+        /* Modal 样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            margin: 15% auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .song-list ul {
+            list-style-type: none; /* 移除列表前的默认符号 */
+            padding: 0;
+        }
+        
+        .song-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc; /* 为每个列表项添加底部边框 */
+        }
+        
+        .song-list button {
+            margin-left: 10px; /* 按钮与文本之间的间距 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Overview部分 -->
+    <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+        <div class="style1">
+            <h1 style="text-align:center; font-size: 40px;">Enhanced String Quartet Separation Using Positional Cues (Submitted to Icassp2025)</h1>
+            <p class="lead fw-bold">
+                <a href="https://ieeexplore.ieee.org/author/37089543060" class="btn border-white bg-white fw-bold">IEEE Xplore</a> |
+                <a href="https://logicino.github.io/resume.html" class="btn border-white bg-white fw-bold">Resume</a> |
+                <a href="https://github.com/Logicino" class="btn border-white bg-white fw-bold">Github</a> |
+                <a href="https://www.zhihu.com/people/kino-63-83" class="btn border-white bg-white fw-bold">Zhihu</a> | 
+                <a href="https://space.bilibili.com/3575182?spm_id_from=333.1007.0.0" class="btn border-white bg-white fw-bold">bilibili</a> 
+            </p>
+            <p class="fst-italic mb-0">
+                Yuetonghui Xu<sup>&#9839;</sup>, Yiwen Wang<sup>&#9837;</sup>, Xihong Wu<sup>&#9837;*</sup>, Xiaobing Li<sup>&#9839;</sup>, Feng Yu<sup>&#9839;</sup>
+            </p>
+            <p>
+                <sup>&#9839;</sup>Central Conservatory of China
+                <sup>&#9837;</sup>Peking University
+                <sup>*</sup>Corresponding author
+                <br/>
+            </p>
+        </div>
+        <div class="style1">
+            <h1>Overview</h1>
+            <p>
+                String quartet source separation poses unique challenges due to overlapping fundamental frequencies, similar timbres, and complex acoustic environments inherent in chamber music. Traditional methods typically use single-channel input, which fails to leverage the spatial information embedded in the music, resulting in suboptimal separation performance. 
+                In this paper, we present a novel approach that enhances string quartet separation by incorporating positional cues into a conditional modulation network. To evaluate our method, we create a specialized dataset of string quartet recordings. Experimental results demonstrate that our approach effectively separates the individual instruments and highlights the importance of positional encoding in improving separation quality. 
+                <figure>
+                    <img src="img/string_quartet.png" style="width: 40%;">
+                    <figcaption>Implicit position cues in string quartet.</figcaption>
+                </figure>
+                <figure>
+                    <img src="img/network_structure.png" style="width: 80%;">
+                    <figcaption>Overview of our method</figcaption>
+                </figure>
+            </p> 
+        </div>
+    </div>
+
+  <!-- 模态框 (Modal) -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    <!-- Audio Demos部分，重复多次 -->
+    <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+        <div class="style2">
+            <a name="audio-demos"><h1>Separation Demo: Contrapunctus VI</h1></a>
+                <p>
+                    (Scores just for reference)
+                </p>
+            <div class="container" style="display: flex; align-items: stretch;"> <!-- 修改对齐样式 -->
+                <div class="image">
+                    <img src="img/contrapunctus_6_score.png" alt="Image" onclick="showModal(this)">
+                </div>
+                <div class="audio">
+                    <!-- 按照指定顺序排列音频控件 -->
+                    <div class="audio-item">
+                        <label>Mixture:</label>
+                        <audio controls>
+                            <source src="audio_demo/contrapunctus/mixture.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Violin_1:</label>
+                        <audio controls>
+                            <source src="audio_demo/contrapunctus/Violin_1.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Violin_2:</label>
+                        <audio controls>
+                            <source src="audio_demo/contrapunctus/Violin_2.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Viola:</label>
+                        <audio controls>
+                            <source src="audio_demo/contrapunctus/Viola.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Cello:</label>
+                        <audio controls>
+                            <source src="audio_demo/contrapunctus/Cello.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- 模态框 (Modal) -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    <!-- Audio Demos部分，重复多次 -->
+    <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+        <div class="style2">
+            <a name="audio-demos"><h1>Separation Demo: K464</h1></a>
+                <p>
+                    (Scores just for reference)
+                </p>
+            <div class="container" style="display: flex; align-items: stretch;"> <!-- 修改对齐样式 -->
+                <div class="image">
+                    <img src="img/k464_score.png" alt="Image" onclick="showModal(this)">
+                </div>
+                <div class="audio">
+                    <!-- 按照指定顺序排列音频控件 -->
+                    <div class="audio-item">
+                        <label>Mixture:</label>
+                        <audio controls>
+                            <source src="audio_demo/k464/mixture.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Violin_1:</label>
+                        <audio controls>
+                            <source src="audio_demo/k464/Violin_1.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Violin_2:</label>
+                        <audio controls>
+                            <source src="audio_demo/k464/Violin_2.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Viola:</label>
+                        <audio controls>
+                            <source src="audio_demo/k464/Viola.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Cello:</label>
+                        <audio controls>
+                            <source src="audio_demo/k464/Cello.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框 (Modal) -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    
+    <!-- 图片展示部分 -->
+    <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+        <div class="style3">
+            <a name="image-gallery"><h1>Separation Results on EnsembleSet String Quartet Test Set</h1></a>
+            <p>
+                (Click on the image to enlarge)
+            </p>
+            <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+                <!-- 重复以下div来展示更多图片 -->
+                <div class="image">
+                    <img src="img/simulated_Violin_1.png" alt="Image 1" onclick="showModal(this)">
+                </div>
+                <div class="image">
+                    <img src="img/simulated_Violin_2.png" alt="Image 2" onclick="showModal(this)">
+                </div>
+                <div class="image">
+                    <img src="img/simulated_Viola.png" alt="Image 3" onclick="showModal(this)">
+                </div>
+                <div class="image">
+                    <img src="img/simulated_Cello.png" alt="Image 3" onclick="showModal(this)">
+                </div>
+                <!-- 更多图片 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框 (Modal) -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    
+    <!-- 图片展示部分 -->
+    <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+        <div class="style3">
+            <a name="image-gallery"><h1>Separation Results on URMP String Quartet Test Set</h1></a>
+            <p>
+                (Click on the image to enlarge)
+            </p>
+            <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+                <!-- 重复以下div来展示更多图片 -->
+                <div class="image">
+                    <img src="img/real_data_Violin_1.png" alt="Image 1" onclick="showModal(this)">
+                </div>
+                <div class="image">
+                    <img src="img/real_data_Violin_2.png" alt="Image 2" onclick="showModal(this)">
+                </div>
+                <div class="image">
+                    <img src="img/real_data_Viola.png" alt="Image 3" onclick="showModal(this)">
+                </div>
+                <div class="image">
+                    <img src="img/real_data_Cello.png" alt="Image 3" onclick="showModal(this)">
+                </div>
+                <!-- 更多图片 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框 (Modal) -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    
+    <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+        <div class="song-list">
+            <h2>EnsembleSet String Quartet Train Set List</h2>
+            <ul>
+                <li>1-aasesdeath</li>
+                <li>2-AgitatoDaFiereTempeste</li>
+                <li>3-AITardarDellaVendetta</li>
+                <li>4-anitrasdance</li>
+                <li>5-autumn</li>
+                <li>6-BelPiacer</li>
+                <li>7-Calcante_ed_Achille</li>
+                <li>9-concerto-in-d-minor</li>
+                <li>10-concerto-in-e-major</li>
+                <li>11-contrapunctusII</li>
+                <li>12-contrapunctusIII</li>
+                <li>13-contrapunctusIV</li>
+                <li>14-contrapunctusIX</li>
+                <li>15-contrapunctusV</li>
+                <li>17-contrapunctusVII</li>
+                <li>18-contrapunctusX</li>
+                <li>19-contrapunctusII</li>
+                <li>20-eine-kleine-nachtmusik-mvt1</li>
+                <li>22-hallelujah</li>
+                <li>23-k387</li>
+                <li>24-k421</li>
+                <li>25-k428</li>
+                <li>26-k458</li>
+                <li>28-k465</li>
+                <li>29-Marche</li>
+                <li>30-MentreDormi</li>
+                <li>32-NelleNubilntornoAlFato</li>
+                <li>33-op1_1</li>
+                <li>34-op1_2</li>
+                <li>35-op1_3</li>
+                <li>36-op1_4</li>
+                <li>37-op76-n1</li>
+                <li>38-op76-n2</li>
+                <li>39-op76-n3</li>
+                <li>40-op76-n4</li>
+                <li>41-op76-n5</li>
+                <li>42-op76-n6</li>
+                <li>43-Parto_ti_lascio</li>
+                <li>44-Passacaglia</li>
+                <li>45-Passaggier</li>
+                <li>46-quart18</li>
+                <li>47-Ride_il_ciel</li>
+                <li>48-RM-C012</li>
+                <li>49-RM-C013</li>
+                <li>50-RM-C014</li>
+                <li>52-RM-C016</li>
+                <li>53-RM-C017</li>
+                <li>54-RM-C021</li>
+                <li>55-SchubertF-D703-Quartettsatz</li>
+                <li>56-Se_potessero</li>
+                <li>57-SeDelFiume</li>
+                <li>58-Semiramide_riconosciuta</li>
+                <li>60-SiamNavi</li>
+                <li>61-Sol_la_brama</li>
+                <li>62-spring</li>
+                <li>63-summer</li>
+                <li>64-Voglio_che_sia_I_indegno</li>
+                <li>65-Voi_che_le_mie_vicende</li>
+                <li>66-winter</li>
+            </ul>
+        </div>
+    
+        <div class="song-list">
+            <h2>EnsembleSet String Quartet Test Set List</h2>
+            <ul>
+                <li>8-CaraSposa</li>
+                <li>16-contrapunctusVI</li>
+                <li>27-k464</li>
+                <li>31-MiseroPargoletto</li>
+                <li>51-RM-C015</li>
+                <li>59-SentiSeLIngannai</li>
+            </ul>
+        </div>
+        
+        <div class="song-list">
+            <h2>URMP String Quartet Test Set List</h2>
+            <ul>
+                <li>24-Pirates_vn_vn_va_vc</li>
+                <li>26-King_vn_vn_va_vc</li>
+                <li>32-Fugue_vn_vn_va_vc</li>
+                <li>36-Rondeau_vn_vn_va_vc</li>
+                <li>38-Jerusalem_vn_vn_va_vc</li>
+                <li>44-K515_vn_vn_va_vc</li>
+            </ul>
+        </div>
+
+    
+    <!-- 添加更多内容块 -->
+    <!-- 你可以通过复制上面的<div class="container ...>块来重复多次 -->
+
+
+    <script>
+        // JavaScript to handle image click for modal
+        function showModal(img) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("img01");
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+
+        // Close modal when clicking on 'x' or outside the image
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
