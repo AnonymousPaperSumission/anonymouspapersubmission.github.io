@@ -177,28 +177,11 @@
     <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
         <div class="style1">
             <h1 style="text-align:center; font-size: 40px;">Enhanced String Quartet Separation Using Positional Cues (Submitted to Icassp2025)</h1>
-            <p class="lead fw-bold">
-                <a href="https://ieeexplore.ieee.org/author/37089543060" class="btn border-white bg-white fw-bold">IEEE Xplore</a> |
-                <a href="https://logicino.github.io/resume.html" class="btn border-white bg-white fw-bold">Resume</a> |
-                <a href="https://github.com/Logicino" class="btn border-white bg-white fw-bold">Github</a> |
-                <a href="https://www.zhihu.com/people/kino-63-83" class="btn border-white bg-white fw-bold">Zhihu</a> | 
-                <a href="https://space.bilibili.com/3575182?spm_id_from=333.1007.0.0" class="btn border-white bg-white fw-bold">bilibili</a> 
-            </p>
-            <p class="fst-italic mb-0">
-                Yuetonghui Xu<sup>&#9839;</sup>, Yiwen Wang<sup>&#9837;</sup>, Xihong Wu<sup>&#9837;*</sup>, Xiaobing Li<sup>&#9839;</sup>, Feng Yu<sup>&#9839;</sup>
-            </p>
-            <p>
-                <sup>&#9839;</sup>Central Conservatory of China
-                <sup>&#9837;</sup>Peking University
-                <sup>*</sup>Corresponding author
-                <br/>
-            </p>
         </div>
         <div class="style1">
             <h1>Overview</h1>
             <p>
-                String quartet source separation poses unique challenges due to overlapping fundamental frequencies, similar timbres, and complex acoustic environments inherent in chamber music. Traditional methods typically use single-channel input, which fails to leverage the spatial information embedded in the music, resulting in suboptimal separation performance. 
-                In this paper, we present a novel approach that enhances string quartet separation by incorporating positional cues into a conditional modulation network. To evaluate our method, we create a specialized dataset of string quartet recordings. Experimental results demonstrate that our approach effectively separates the individual instruments and highlights the importance of positional encoding in improving separation quality. 
+                    String quartets inherently face challenges such as fundamental frequency overlap, similar timbres, and complex acoustic environments, making existing source separation methods relying solely on timbral characteristics less effective.This paper proposes a novel approach that enhances separation performance by encoding timbral and spatial positional cues to guide a neural network for source separation. To evaluate our method, we created a dataset of string quartet recordings with realistic reverberation with two different seating arrangements. Experiments demonstrate that our approach outperforms current state-of-the-art (SOTA) methods in source separation, achieving superior performance even in seating arrangements different from training, thus highlighting the importance of our timbral and positional encoding in improving separation quality and generalizability. 
                 <figure>
                     <img src="img/string_quartet.png" style="width: 40%;">
                     <figcaption>Implicit position cues in string quartet.</figcaption>
