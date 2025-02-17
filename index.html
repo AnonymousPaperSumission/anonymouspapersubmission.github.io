@@ -66,6 +66,7 @@ n<!DOCTYPE html>
 
         .style2 .container {
             display: flex;
+            flex-wrap: wrap; /* 允许子元素换行 */
             align-items: flex-start;
             margin-bottom: 20px;
         }
@@ -79,7 +80,10 @@ n<!DOCTYPE html>
             flex: 1;
             display: flex;
             flex-direction: row;
-            justify-content: space-between; /* 使音频控件占满高度 */
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            /* justify-content: space-between; /* 使音频控件占满高度 */ */
             height: 100%; /* 高度设置为100% */
         }
 
@@ -90,18 +94,23 @@ n<!DOCTYPE html>
         }
 
         .style2 .audio-item {
+            flex: 1;
             display: flex;
+            flex-direction: row; /* 水平排列 */
+            flex-wrap: wrap; /* 允许音频控件换行 */
+            justify-content: flex-start; /* 从左侧开始排列 */
             align-items: center;
-            margin-bottom: 10px;
+            gap: 10px; /* 添加间距 */
         }
 
         .style2 .audio-item label {
-            margin-right: 10px;
-            font-size: 16px;
+            margin-right: 5px;
+            font-size: 14px;
         }
 
         .style2 audio {
-            margin-bottom: 10px;
+            width: 150px; /* 缩小播放器宽度 */
+            height: auto;
         }
 
         /* 定义style3类的样式 */
