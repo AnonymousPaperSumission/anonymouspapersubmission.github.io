@@ -172,10 +172,29 @@
             margin-left: 10px; /* 按钮与文本之间的间距 */
         }
 
+        .audio-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* 添加间距 */
+        }
+        
+        .audio-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .audio-item label {
+            margin-right: 5px;
+        }
+        
         .small-audio {
             width: 150px; /* 设置播放器宽度 */
             height: 30px; /* 设置播放器高度 */
             margin-bottom: 10px; /* 添加一些间距 */
+        }
+
+        .audio-group{
+            margin-bottom: 20px;
         }
         
     </style>
@@ -324,48 +343,83 @@
     <!-- Audio Demos部分，重复多次 -->
     <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
         <div class="style2">
-            <a name="audio-demos"><h1>Separation Demo: K464</h1></a>
-                <p>
-                    (Scores just for reference)
-                </p>
-            <div class="container" style="display: flex; align-items: stretch;"> <!-- 修改对齐样式 -->
-                <div class="image">
-                    <img src="img/k464_score.png" alt="Image" onclick="showModal(this)">
-                </div>
-                <div class="audio">
-                    <!-- 按照指定顺序排列音频控件 -->
+            <a name="audio-demos"><h1>Separation Demo: "Pirates" (tested on Seating#2)</h1></a>
+            <p>(Scores just for reference)</p>
+            <div class="audio-group">
+                <p>Ground Truth 1:</p>
+                <div class="audio-row">
                     <div class="audio-item">
                         <label>Mixture:</label>
-                        <audio controls>
-                            <source src="audio_demo/k464/mixture.wav" type="audio/wav">
-                            Your browser does not support the audio element.
-                        </audio>
-                    </div>
-                    <div class="audio-item">
-                        <label>Violin_1:</label>
-                        <audio controls>
-                            <source src="audio_demo/k464/Violin_1.wav" type="audio/wav">
-                            Your browser does not support the audio element.
-                        </audio>
-                    </div>
-                    <div class="audio-item">
-                        <label>Violin_2:</label>
-                        <audio controls>
-                            <source src="audio_demo/k464/Violin_2.wav" type="audio/wav">
-                            Your browser does not support the audio element.
-                        </audio>
-                    </div>
-                    <div class="audio-item">
-                        <label>Viola:</label>
-                        <audio controls>
-                            <source src="audio_demo/k464/Viola.wav" type="audio/wav">
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/mix-seating2-24-Pirates.mp3" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
                     </div>
                     <div class="audio-item">
                         <label>Cello:</label>
-                        <audio controls>
-                            <source src="audio_demo/k464/Cello.wav" type="audio/wav">
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/gt-seating2-1_Cello.mp3" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Viola:</label>
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/gt-seating2-2_Viola.mp3" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Violin_2:</label>
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/gt-seating2-3_Violin_2.mp3" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Violin_1:</label>
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/gt-seating2-4_Violin_1.mp3" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+            <div class="audio-group">
+                <p>Ground Truth 2:</p>
+                <div class="audio-row">
+                    <div class="audio-item">
+                        <label>Mixture:</label>
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/mix-seating2-24-Pirates.mp3" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Cello:</label>
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/gt-seating2-1_Cello.mp3" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Viola:</label>
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/gt-seating2-2_Viola.mp3" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Violin_2:</label>
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/gt-seating2-3_Violin_2.mp3" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="audio-item">
+                        <label>Violin_1:</label>
+                        <audio controls class="small-audio">
+                            <source src="audio_demo/gt-seating2-4_Violin_1.mp3" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
                     </div>
